@@ -4,7 +4,9 @@ import datetime
 
 with Booking() as bot:
     bot.land_first_page()
-    bot.change_currency(currency='KGS')
+    time.sleep(3)
+    bot.change_currency(currency='EUR')
+    time.sleep(1)
     bot.select_place_to_go('New York')
     first_date = datetime.date.today() + datetime.timedelta(days=10)
     second_date = first_date + datetime.timedelta(days=15)
@@ -12,5 +14,5 @@ with Booking() as bot:
     bot.select_adults(6)
     bot.click_search()
     bot.apply_filtrations()
-    time.sleep(5)
+    time.sleep(15)
     print('Exiting...')

@@ -1,4 +1,6 @@
 import os
+import time
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -21,6 +23,7 @@ class Booking(webdriver.Chrome):
 
     def land_first_page(self):
         self.get(const.BASE_URL)
+        self.delete_all_cookies()
 
     def change_currency(self, currency = None):
         currency_element =  self.find_element(By.CSS_SELECTOR, 'button[data-tooltip-text="Выберите валюту"]')
@@ -70,4 +73,6 @@ class Booking(webdriver.Chrome):
 
     def apply_filtrations(self):
         filtration = BookingFiltration(driver = self)
-        filtration.apply_star_rating()
+        filtration.apply_star_rating('3 звезды', '4 звезды')
+        time.sleep(3)
+        filtration.sort_by_price_low_first()
